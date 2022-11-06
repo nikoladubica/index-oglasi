@@ -1,0 +1,132 @@
+@import '~antd/dist/antd.css';
+
+.ant-input-wrapper {
+    border-radius: 8px;
+    background: #F4F4F4;
+}
+
+.ant-input-group {
+    width: 354px;
+
+    .ant-input {
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+
+        &::placeholder {
+            // font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+            text-transform: capitalize;
+            color: #828282;
+        }
+    }
+}
+
+.ant-input-group-addon {
+    background: #F4F4F4; 
+
+    .ant-btn {
+        &.ant-input-search-button {
+            height: 44px;
+            background: $color-red;
+            border-radius: 8px !important;
+            border: none;
+            outline: none;
+        }
+    }
+}
+
+.ant-btn {
+    &.ant-btn-primary {
+        &.ant-btn-dangerous {
+            // font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: -0.015em;
+            background: $color-red;
+            border-radius: 12px;
+            padding: 8px 22px;
+            height: unset;
+            width: unset;
+        }
+
+        &.ant-btn-lg {
+            border-radius: 8px;
+        }
+    }
+}
+
+.ant-radio-group {
+    .ant-space {
+        .ant-space-item {
+            .ant-radio-wrapper {
+                &.ant-radio-wrapper-checked {
+                    .ant-radio {
+                        &.ant-radio-checked {
+                            .ant-radio-inner {
+                                border-color: $color-red;
+
+                                &::after {
+                                    background-color: $color-red;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ant-input-affix-wrapper {
+    height: 54px !important;
+    border: none !important;
+    background: #F4F4F4 !important;
+    border-radius: 5px !important;
+
+    .ant-input {
+        line-height: 1 !important;
+        background: #F4F4F4 !important;
+
+        &::placeholder {
+            color: #828282 !important;
+        }
+    }
+}
+
+.ant-select {
+    position: relative;
+
+    .ant-select-selector {
+        height: 54px !important;
+        border: none !important;
+        background: #F4F4F4 !important;
+        border-radius: 5px !important;
+
+        .ant-select-selection-item {
+            display: flex;
+            align-items: center;
+            line-height: 1;
+        }
+
+        .ant-select-selection-placeholder {
+            display: flex;
+            align-items: center;
+            line-height: 1;
+            color: #828282 !important;
+        }
+            
+        &::after {
+            line-height: 1 !important;
+        }
+    }
+
+    .ant-select-arrow {
+        color: #000;
+        right: 14px;
+    }
+}
