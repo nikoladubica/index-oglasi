@@ -1,0 +1,42 @@
+.listing {
+    margin-top: 100px;
+    margin-bottom: 60px;
+
+    &__title {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 36px;
+        letter-spacing: -0.015em;
+        color: $color-index-black;
+        margin-bottom: 16px;
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: calc(25% - 15px) calc(25% - 15px) calc(25% - 15px) calc(25% - 15px);
+        gap: 20px;
+    }
+
+    &__more {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 22px;
+        letter-spacing: -0.015em;
+        color: $color-index-black;
+        margin-top: 32px;
+        cursor: pointer;
+
+        svg {
+            margin-left: 8px;
+            fill: $color-red;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

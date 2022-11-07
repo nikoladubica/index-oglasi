@@ -1,0 +1,120 @@
+.listing-card {
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+
+    .ant-card-cover {
+        img {
+            border-radius: 8px 8px 0 0;
+        }
+    }
+
+    .ant-card-body {
+        padding: 20px 24px;
+    }
+
+    .ant-card-meta {
+        .ant-card-meta-detail {
+            .ant-card-meta-title {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 23px;
+                letter-spacing: -0.015em;
+                color: $color-index-black;
+                margin-bottom: 4px;
+            }
+
+            .ant-card-meta-description {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 22px;
+                letter-spacing: -0.015em;
+                color: $color-index-black-1;
+            }
+        }
+    }
+
+    &__price {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 12px;
+
+        span {
+            &:first-child {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 22px;
+                line-height: 32px;
+                letter-spacing: -0.015em;
+                color: $color-red;
+                margin-right: 16px;
+            }
+
+            &:last-child {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 22px;
+                letter-spacing: -0.015em;
+                color: $color-index-black-2;
+            }
+        }
+    }
+
+    .ant-divider {
+        margin: 12px 0;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 0.05em;
+            color: $color-index-black-2;
+        }
+    }
+
+    &__wish {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(249, 65, 68, 0.1);
+        border-radius: 6.4199px;
+        height: 46px;
+        width: 46px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: rgba(249, 65, 68, 0.2);
+        }
+
+        &:active {
+            outline: 3px solid rgba(249, 65, 68, 0.05);
+        }
+
+        .anticon-heart {
+            width: 22px;
+            height: 22px;
+
+            svg {
+                height: 100%;
+                width: 100%;
+                fill: $color-red;
+            }
+        }
+    }
+}
