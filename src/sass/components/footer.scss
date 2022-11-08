@@ -1,0 +1,101 @@
+.footer {
+    background: $color-index-white;
+    padding: 60px 0 24px 0;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 1204px;
+        margin: 0 auto 155px auto;
+    }
+
+    &__bottom {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: -0.015em;
+        color: $color-index-black;
+        opacity: 0.5;
+        width: 1204px;
+        margin: 0 auto;
+    }
+
+    &__logo {
+        img {
+            height: 57px;
+            width: 136px;
+        }
+    }
+
+    &__contact {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__contact-item {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-bottom: 38px;
+
+        &:last-child {
+            width: 100px;
+            margin-bottom: 0;
+        }
+
+        &__label {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 22px;
+            letter-spacing: -0.015em;
+            color: $color-index-black;
+            opacity: 0.65;
+            margin-bottom: 4px;
+        }
+
+        &__value {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 27px;
+            letter-spacing: -0.015em;
+            color: $color-index-black;
+        }
+    }
+
+    &__impressum {
+        display: flex;
+        justify-content: flex-end;
+
+        div {
+            display: flex;
+            flex-direction: column;
+
+            &:first-child {
+                margin-right: 53px;
+            }
+
+            a {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 21px;
+                letter-spacing: -0.015em;
+                color: $color-index-black;
+                opacity: 0.65;
+                margin-bottom: 16px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
