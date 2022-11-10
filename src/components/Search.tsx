@@ -59,7 +59,7 @@ const Search: React.FC<{}> = () => {
                     </Col>
 
                     <Col span={8}>
-                        <Select placeholder='Lokacija' onChange={}>
+                        <Select placeholder='Lokacija' onChange={locationChangeHandler}>
                             <Option value="">-</Option>
                             <OptGroup label="Centralna Hrvatska">
                                 <Option value="Zagreb">Zagreb</Option>

@@ -17,8 +17,9 @@ const Listing: React.FC<{}> = () => {
     
     const [page, setPage] = useState(1);
 
-    const moreItemsHandler = (e: any) => {
+    const moreItemsHandler = () => {
         setPage(page + 1)
+        console.log(page)
     };
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const Listing: React.FC<{}> = () => {
         </div>
 
         <div className="listing__more">
-            <span onClick={moreItemsHandler} data-value={1}>Vidi više</span>
+            <span onClick={moreItemsHandler}>Vidi više</span>
             <RightOutlined />
         </div>
     </div>;
