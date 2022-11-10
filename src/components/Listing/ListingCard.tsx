@@ -5,20 +5,22 @@ import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 const { Meta } = Card;
  
 const ListingCard: React.FC<{ card: any }> = (props) => {
-    const priceKN = (props.card.price * 7.54).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    const priceKN = parseInt((props.card.price * 7.54).toString()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     const priceEUR = props.card.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     const date = new Date(props.card.postedTime)
+    const dateBuilt = new Date(props.card.summary.yearBuilt)
     const dateFormatted = date.toLocaleDateString('de-DE')
-
-    console.log(props.card)
+    const dateBuiltFormatted = dateBuilt.toLocaleDateString('de-DE')
+    const coverImage = props.card.imageIds[0]
+    const numOfRooms = props.card.summary.numberOfRooms ? ' · Broj soba: ' + props.card.summary.numberOfRooms : ''
 
     return   <Card
         className='listing-card'
         hoverable
         style={{ width: 286 }}
-        cover={<img alt="Cover" src="https://oglasimedia.com/images/2022/8/3/5bc9a4a8-74a0-45e5-9832-cba169bb1ab0.jpg" />}
+        cover={coverImage ? <img alt="Cover" src={coverImage} /> : <div className='listing-card__fallback'></div>}
     >
-        <Meta title={props.card.title} description="www.instagram.com" />
+        <Meta title={props.card.title} description={props.card.summary.area + 'm² · Izgrađeno: ' + dateBuiltFormatted + numOfRooms} />
         <div className="listing-card__price">
             <span>€ {priceEUR}</span>
             <span>~{priceKN} kn</span>
