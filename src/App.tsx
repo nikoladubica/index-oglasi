@@ -12,15 +12,18 @@ import { actionCreators } from './store';
 import { RootState } from './store/reducers';
 
 const App = () => {
-  const state = useSelector((state: RootState) => state.bank)
+  const state = useSelector((state: RootState) => state)
   const dispatch = useDispatch();
-  const [ apiData, setApiData ] = useState({});
 
-  const { fetchData } = bindActionCreators(actionCreators, dispatch)
+  const { fetchData, filterData } = bindActionCreators(actionCreators, dispatch)
 
   useEffect(() => {
     fetchData()
   }, [])
+
+  useEffect(() => {
+    filterData(Object.assign(state.original), state.filters, 1)
+  }, [state.original])
 
   return (
     <div>

@@ -5,32 +5,36 @@ import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 const { Meta } = Card;
  
 const ListingCard: React.FC<{ card: any }> = (props) => {
-    const priceKN = parseInt((props.card.price * 7.54).toString()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-    const priceEUR = props.card.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     const date = new Date(props.card.postedTime)
     const dateBuilt = new Date(props.card.summary.yearBuilt)
-    const dateFormatted = date.toLocaleDateString('de-DE')
-    const dateBuiltFormatted = dateBuilt.toLocaleDateString('de-DE')
-    const coverImage = props.card.imageIds[0]
-    const numOfRooms = props.card.summary.numberOfRooms ? ' · Broj soba: ' + props.card.summary.numberOfRooms : ''
+
+    const cardObject = {
+        title: props.card.title,
+        image: props.card.imageIds[0],
+        date: date.toLocaleDateString('de-DE'),
+        dateBuilt: dateBuilt.toLocaleDateString('de-DE'),
+        area: props.card.summary.area ? props.card.summary.area + 'm² · ' : '',
+        rooms: props.card.summary.numberOfRooms ? 'Broj soba: ' + props.card.summary.numberOfRooms : '',
+        priceEUR: props.card.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."),
+        priceKN: parseInt((props.card.price * 7.54).toString()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
 
     return   <Card
         className='listing-card'
         hoverable
         style={{ width: 286 }}
-        cover={coverImage ? <img alt="Cover" src={coverImage} /> : <div className='listing-card__fallback'></div>}
+        cover={cardObject.image ? <img alt="Cover" src={cardObject.image} /> : <div className='listing-card__fallback'></div>}
     >
-        <Meta title={props.card.title} description={props.card.summary.area + 'm² · Izgrađeno: ' + dateBuiltFormatted + numOfRooms} />
+        <Meta title={cardObject.title} description={cardObject.area + cardObject.dateBuilt + cardObject.rooms} />
         <div className="listing-card__price">
-            <span>€ {priceEUR}</span>
-            <span>~{priceKN} kn</span>
+            <span>€ {cardObject.priceEUR}</span>
+            <span>~{cardObject.priceKN} kn</span>
         </div>
         <Divider />
         <div className="listing-card__footer">
-            <span>{dateFormatted}</span>
+            <span>{cardObject.date}</span>
             <div className="listing-card__wish">
-                {/* TODO!! props.isFavorite ? <HeartFilled /> : <HeartOutlined /> */}
-                <HeartOutlined />
+                {props.card.isFavorite ? <HeartFilled /> : <HeartOutlined />}
             </div>
         </div>
     </Card>

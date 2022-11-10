@@ -1,9 +1,13 @@
 import { combineReducers } from "redux";
-import bankReducer from "./reducer"
+import originalReducer from "./originalReducer"
+import dataReducer from "./dataReducer"
+import filterReducer from "./filterReducer"
 
 
 const reducers = combineReducers({
-    bank: bankReducer
+    original: originalReducer,
+    data: dataReducer,
+    filters: filterReducer
 })
 
 export default reducers

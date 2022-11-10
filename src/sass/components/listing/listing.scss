@@ -28,11 +28,14 @@
         letter-spacing: -0.015em;
         color: $color-index-black;
         margin-top: 32px;
-        cursor: pointer;
 
         svg {
             margin-left: 8px;
             fill: $color-red;
+        }
+
+        span {
+            cursor: pointer;
         }
 
         &:hover {
