@@ -19,7 +19,6 @@ const Listing: React.FC<{}> = () => {
 
     const moreItemsHandler = () => {
         setPage(page + 1)
-        console.log(page)
     };
 
     useEffect(() => {

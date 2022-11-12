@@ -22,12 +22,39 @@ const Search: React.FC<{}> = () => {
         setFilters({key: 'location', value: e})
     };
 
+    const areaChangeHandler = (e: any) => {
+        setFilters({key: 'area', value: e.target.value})
+    }
+
+    const priceChangeHandler = (e: any) => {
+        setFilters({key: 'price', value: e.target.value})
+    }
+
+    const roomsFromChangeHandler = (e: any) => {
+        setFilters({key: 'roomsFrom', value: e})
+    }
+
+    const roomsToChangeHandler = (e: any) => {
+        setFilters({key: 'roomsTo', value: e})
+    }
+
+    const submitHandler = () => {
+        filterData(Object.assign(state.original), state.filters, 1)
+    }
+
+    const keyDownListener = (e: any) => {
+        if (e.key == 'Enter') {
+            // TODO!! Make element not opet again on Enter
+            submitHandler()
+        }
+    }
+
     useEffect(() => {
         // setFilters({key: 'category', value: 'houses'})
     }, [])
 
     useEffect(() => {
-        filterData(Object.assign(state.original), state.filters, 1)
+        
     }, [state.filters])
 
     return (
@@ -44,8 +71,12 @@ const Search: React.FC<{}> = () => {
                     <Col span={8}>
                         <Select
                             defaultValue='Tip nekretnine'
-                            onChange={categoryChangeHandler}
+                            onChange={categoryChangeHandler} onKeyDown={keyDownListener}
                             options={[
+                                {
+                                    value: '',
+                                    label: '',
+                                },
                                 {
                                     value: 'houses',
                                     label: 'Kuća',
@@ -59,8 +90,8 @@ const Search: React.FC<{}> = () => {
                     </Col>
 
                     <Col span={8}>
-                        <Select placeholder='Lokacija' onChange={locationChangeHandler}>
-                            <Option value="">-</Option>
+                        <Select placeholder='Lokacija' onChange={locationChangeHandler} onKeyDown={keyDownListener} >
+                            <Option value=""> </Option>
                             <OptGroup label="Centralna Hrvatska">
                                 <Option value="Zagreb">Zagreb</Option>
                                 <Option value="Karlovac">Karlovac</Option>
@@ -89,35 +120,49 @@ const Search: React.FC<{}> = () => {
                     </Col>
 
                     <Col span={8}>
-                        <Input placeholder='Kvadratura' suffix="m²" />
+                        <Input placeholder='Kvadratura od' suffix="m²" onChange={areaChangeHandler} onKeyDown={keyDownListener} />
                     </Col>
 
                     <Col span={8}>
-                        <Input placeholder='Cijena do' suffix="€" />
+                        <Input placeholder='Cijena do' suffix="€" onChange={priceChangeHandler} onKeyDown={keyDownListener} />
                     </Col>
 
                     <Col span={8}>
                         <Space>
-                            <Select placeholder='Broj soba od'>
+                            <Select placeholder='Broj soba od' onChange={roomsFromChangeHandler} onKeyDown={keyDownListener} >
+                                <Option value=""> </Option>
                                 <Option value="1">1</Option>
                                 <Option value="2">2</Option>
                                 <Option value="3">3</Option>
                                 <Option value="4">4</Option>
+                                <Option value="5">5</Option>
+                                <Option value="6">6</Option>
+                                <Option value="7">7</Option>
+                                <Option value="8">8</Option>
+                                <Option value="9">9</Option>
+                                <Option value="10">10</Option>
                             </Select>
 
                             <Divider type="vertical" />
 
-                            <Select placeholder='Broj soba do'>
+                            <Select placeholder='Broj soba do' onChange={roomsToChangeHandler} onKeyDown={keyDownListener} >
+                                <Option value=""> </Option>
                                 <Option value="1">1</Option>
                                 <Option value="2">2</Option>
                                 <Option value="3">3</Option>
                                 <Option value="4">4</Option>
+                                <Option value="5">5</Option>
+                                <Option value="6">6</Option>
+                                <Option value="7">7</Option>
+                                <Option value="8">8</Option>
+                                <Option value="9">9</Option>
+                                <Option value="10">10</Option>
                             </Select>
                         </Space>
                     </Col>
 
                     <Col span={8}>
-                        <Button type="primary" size="large" danger>
+                        <Button type="primary" size="large" danger onClick={submitHandler}>
                             TRAŽI
                         </Button>
                     </Col>
