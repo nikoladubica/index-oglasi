@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Divider } from 'antd';
+import { Card, Divider, Carousel } from 'antd';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 
 const { Meta } = Card;
@@ -10,7 +10,6 @@ const ListingCard: React.FC<{ card: any }> = (props) => {
 
     const cardObject = {
         title: props.card.title,
-        image: props.card.imageIds[0],
         date: date.toLocaleDateString('de-DE'),
         dateBuilt: dateBuilt.toLocaleDateString('de-DE') + ' · ',
         area: props.card.summary.area ? props.card.summary.area + 'm² · ' : '',
@@ -19,11 +18,19 @@ const ListingCard: React.FC<{ card: any }> = (props) => {
         priceKN: parseInt((props.card.price * 7.54).toString()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
 
+    const coverHandler = () => {
+        const carousel = <Carousel swipeToSlide draggable>
+            {props.card.imageIds.map((image: any, index: number) => <img key={index} alt="Cover" src={image} />)}
+        </Carousel>;
+
+        return carousel
+    }
+
     return   <Card
         className='listing-card'
         hoverable
         style={ window.innerWidth >= 768 ? { width: 286 } : {}}
-        cover={cardObject.image ? <img alt="Cover" src={cardObject.image} /> : <div className='listing-card__fallback'></div>}
+        cover={coverHandler()}
     >
         <Meta title={cardObject.title} description={cardObject.area + cardObject.dateBuilt + cardObject.rooms} />
         <div className="listing-card__price">
