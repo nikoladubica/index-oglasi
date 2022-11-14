@@ -52,6 +52,11 @@
             padding: 8px 22px;
             height: unset;
             width: unset;
+
+            &.disabled {
+                background: #828282;
+                border: none;
+            }
         }
 
         &.ant-btn-lg {
@@ -84,7 +89,7 @@
 
 .ant-input-affix-wrapper {
     height: 54px !important;
-    border: none !important;
+    border: none;
     background: #F4F4F4 !important;
     border-radius: 5px !important;
 

@@ -3,9 +3,7 @@ import { Input, Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
 const Header: React.FC<{}> = () => {
-    const onSearch = (event: any) => {
-        console.log(event)
-    }
+    const onSearch = (event: any) => {}
     
     return (
         <div className="header">
@@ -21,7 +19,7 @@ const Header: React.FC<{}> = () => {
                     <Input.Search placeholder="Upisite pojam..." onSearch={onSearch} enterButton />
                 </div>
 
-                <SearchOutlined />
+                <SearchOutlined className='header__mobile-search' />
 
                 <div className="header__right-side">
                     <div className="header__button noedge-button">

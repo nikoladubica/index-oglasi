@@ -46,6 +46,13 @@
 
             .ant-select-selector {
                 height: 100%;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 15px;
+                line-height: 22px;
+                letter-spacing: -0.015em;
+                color: $color-index-black;
             }
         }
 
@@ -58,6 +65,21 @@
             width: 100%;
             height: 100%;
         }
+
+        .ant-select-selector, .ant-input {
+            height: 100%;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 22px;
+            letter-spacing: -0.015em;
+            color: $color-index-black;
+        }
+    }
+
+    &__location-count {
+        padding-left: 6px;
     }
 
     &__more {

@@ -5,6 +5,7 @@ import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 const { Meta } = Card;
  
 const ListingCard: React.FC<{ card: any }> = (props) => {
+    const [like, setLike] = useState(props.card.isFavorite)
     const date = new Date(props.card.postedTime)
     const dateBuilt = new Date(props.card.summary.yearBuilt)
 
@@ -18,19 +19,19 @@ const ListingCard: React.FC<{ card: any }> = (props) => {
         priceKN: parseInt((props.card.price * 7.54).toString()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
 
-    const coverHandler = () => {
-        const carousel = <Carousel swipeToSlide draggable>
-            {props.card.imageIds.map((image: any, index: number) => <img key={index} alt="Cover" src={image} />)}
-        </Carousel>;
+    const carousel = <Carousel swipeToSlide draggable>
+        {props.card.imageIds.map((image: any, index: number) => <img key={index} alt="Cover" src={image} />)}
+    </Carousel>;
 
-        return carousel
+    const likeHandler = () => {
+        setLike(like ? false : true)
     }
 
     return   <Card
         className='listing-card'
         hoverable
         style={ window.innerWidth >= 768 ? { width: 286 } : {}}
-        cover={coverHandler()}
+        cover={carousel}
     >
         <Meta title={cardObject.title} description={cardObject.area + cardObject.dateBuilt + cardObject.rooms} />
         <div className="listing-card__price">
@@ -40,8 +41,8 @@ const ListingCard: React.FC<{ card: any }> = (props) => {
         <Divider />
         <div className="listing-card__footer">
             <span>{cardObject.date}</span>
-            <div className="listing-card__wish">
-                {props.card.isFavorite ? <HeartFilled /> : <HeartOutlined />}
+            <div className="listing-card__wish" onClick={likeHandler}>
+                {like ? <HeartFilled /> : <HeartOutlined />}
             </div>
         </div>
     </Card>

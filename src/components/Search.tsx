@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Radio, Space, Select, Input, Button, Row, Col, Divider } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../store';
 import { RootState } from '../store/reducers';
+import { SearchOutlined } from '@ant-design/icons';
 
 const Search: React.FC<{}> = () => {
     const dispatch = useDispatch();
     const state = useSelector((state: RootState) => state)
+    const [searchValid, setSearchValid] = useState(true)
 
     const { setFilters, filterData } = bindActionCreators(actionCreators, dispatch)
 
@@ -23,11 +25,27 @@ const Search: React.FC<{}> = () => {
     };
 
     const areaChangeHandler = (e: any) => {
-        setFilters({key: 'area', value: e.target.value})
+        if (!isNaN(e.target.value)) {
+            e.target.parentElement.style.border = 'none'
+            setFilters({key: 'area', value: e.target.value})
+            setSearchValid(true)
+        }
+        else {
+            setSearchValid(false)
+            e.target.parentElement.style.border = '2px solid red'
+        }
     }
 
     const priceChangeHandler = (e: any) => {
-        setFilters({key: 'price', value: e.target.value})
+        if (!isNaN(e.target.value)) {
+            e.target.parentElement.style.border = 'none'
+            setFilters({key: 'price', value: e.target.value})
+            setSearchValid(true)
+        }
+        else {
+            setSearchValid(false)
+            e.target.parentElement.style.border = '2px solid red'
+        }
     }
 
     const roomsFromChangeHandler = (e: any) => {
@@ -39,24 +57,44 @@ const Search: React.FC<{}> = () => {
     }
 
     const submitHandler = () => {
-        console.log(state.filters)
+        if (searchValid)
         filterData(Object.assign(state.original), state.filters, 1)
     }
 
     const keyDownListener = () => {
         document.addEventListener('keydown', (e) => {
-            if (e.key == 'Enter') {
+            if (e.key === 'Enter') {
+                if (searchValid)
                 submitHandler()
             }
         })
     }
 
-    useEffect(() => {
-        
-        // setFilters({key: 'category', value: 'houses'})
-    }, [])
+    const labelHandler = () => {
+        const antInput = document.querySelector('.search__location-input')
+        const cont: any = antInput?.querySelector('.ant-select-selection-overflow')
+
+        if (cont !== null) {
+            cont.querySelectorAll('.search__location-count').forEach((element: any) => {
+                element.remove()
+            });
+
+            const num = cont.childElementCount - 1
+            const children = cont.children
+            const element = document.createElement('span')
+                element.className = 'search__location-count'
+                element.innerHTML = `Odabrano: ${num} lokacija`
+
+            Array.from(children).forEach((child: any) => {
+                child.style.display = 'none'
+            })
+
+            if (num !== 0) cont.appendChild(element)
+        }
+    }
 
     useEffect(() => {
+        labelHandler()
         keyDownListener()
     }, [state.filters])
 
@@ -93,8 +131,7 @@ const Search: React.FC<{}> = () => {
                     </Col>
 
                     <Col span={24} md={8}>
-                        <Select placeholder='Lokacija' onChange={locationChangeHandler}  >
-                            <Option value=""> </Option>
+                        <Select placeholder='Lokacija' onChange={locationChangeHandler} mode={'multiple'} showArrow={true} className='search__location-input'  >
                             <OptGroup label="Centralna Hrvatska">
                                 <Option value="Zagreb">Zagreb</Option>
                                 <Option value="Karlovac">Karlovac</Option>
@@ -165,7 +202,8 @@ const Search: React.FC<{}> = () => {
                     </Col>
 
                     <Col span={24} md={8}>
-                        <Button type="primary" size="large" danger onClick={submitHandler}>
+                        <Button type="primary" size="large" danger onClick={submitHandler} className={!searchValid ? 'disabled' : ''}>
+                            <SearchOutlined />
                             TRAŽI
                         </Button>
                     </Col>

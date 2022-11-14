@@ -17,7 +17,7 @@ const reducer = (state: { key: string, value: string }[] = initialData, action: 
 
                 if (index > -1) state.splice(index, 1)
 
-                if (action.payload.value != '') return [...state, action.payload]
+                if (action.payload.value !== '') return [...state, action.payload]
                 else return [...state]
                 
             }
