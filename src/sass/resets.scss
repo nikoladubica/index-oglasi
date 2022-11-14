@@ -50,3 +50,10 @@ body {
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .section {
+        width: calc(100% - 40px);
+    }
+    
+}

@@ -91,8 +91,29 @@
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     .search {
+        flex-direction: column;
+        padding: 20px;
 
+        .ant-radio-group {
+            margin-right: 0;
+            margin-bottom: 22px;
+            
+            .ant-space-vertical {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: row;
+
+                .ant-space-item {
+                    margin-right: 24px;
+                }
+            }
+        }
+
+        &__more {
+            margin-top: 20px;
+        }
     }
 }

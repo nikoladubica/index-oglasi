@@ -39,22 +39,25 @@ const Search: React.FC<{}> = () => {
     }
 
     const submitHandler = () => {
+        console.log(state.filters)
         filterData(Object.assign(state.original), state.filters, 1)
     }
 
-    const keyDownListener = (e: any) => {
-        if (e.key == 'Enter') {
-            // TODO!! Make element not opet again on Enter
-            submitHandler()
-        }
+    const keyDownListener = () => {
+        document.addEventListener('keydown', (e) => {
+            if (e.key == 'Enter') {
+                submitHandler()
+            }
+        })
     }
 
     useEffect(() => {
+        
         // setFilters({key: 'category', value: 'houses'})
     }, [])
 
     useEffect(() => {
-        
+        keyDownListener()
     }, [state.filters])
 
     return (
@@ -68,10 +71,10 @@ const Search: React.FC<{}> = () => {
                 </Radio.Group>
 
                 <Row gutter={[20, 20]}>
-                    <Col span={8}>
+                    <Col span={24} md={8}>
                         <Select
                             defaultValue='Tip nekretnine'
-                            onChange={categoryChangeHandler} onKeyDown={keyDownListener}
+                            onChange={categoryChangeHandler} 
                             options={[
                                 {
                                     value: '',
@@ -89,8 +92,8 @@ const Search: React.FC<{}> = () => {
                         />
                     </Col>
 
-                    <Col span={8}>
-                        <Select placeholder='Lokacija' onChange={locationChangeHandler} onKeyDown={keyDownListener} >
+                    <Col span={24} md={8}>
+                        <Select placeholder='Lokacija' onChange={locationChangeHandler}  >
                             <Option value=""> </Option>
                             <OptGroup label="Centralna Hrvatska">
                                 <Option value="Zagreb">Zagreb</Option>
@@ -119,17 +122,17 @@ const Search: React.FC<{}> = () => {
                         </Select>
                     </Col>
 
-                    <Col span={8}>
-                        <Input placeholder='Kvadratura od' suffix="m²" onChange={areaChangeHandler} onKeyDown={keyDownListener} />
+                    <Col span={24} md={8}>
+                        <Input placeholder='Kvadratura od' suffix="m²" onChange={areaChangeHandler}  />
                     </Col>
 
-                    <Col span={8}>
-                        <Input placeholder='Cijena do' suffix="€" onChange={priceChangeHandler} onKeyDown={keyDownListener} />
+                    <Col span={24} md={8}>
+                        <Input placeholder='Cijena do' suffix="€" onChange={priceChangeHandler}  />
                     </Col>
 
-                    <Col span={8}>
+                    <Col span={24} md={8}>
                         <Space>
-                            <Select placeholder='Broj soba od' onChange={roomsFromChangeHandler} onKeyDown={keyDownListener} >
+                            <Select placeholder='Broj soba od' onChange={roomsFromChangeHandler}  >
                                 <Option value=""> </Option>
                                 <Option value="1">1</Option>
                                 <Option value="2">2</Option>
@@ -145,7 +148,7 @@ const Search: React.FC<{}> = () => {
 
                             <Divider type="vertical" />
 
-                            <Select placeholder='Broj soba do' onChange={roomsToChangeHandler} onKeyDown={keyDownListener} >
+                            <Select placeholder='Broj soba do' onChange={roomsToChangeHandler}  >
                                 <Option value=""> </Option>
                                 <Option value="1">1</Option>
                                 <Option value="2">2</Option>
@@ -161,7 +164,7 @@ const Search: React.FC<{}> = () => {
                         </Space>
                     </Col>
 
-                    <Col span={8}>
+                    <Col span={24} md={8}>
                         <Button type="primary" size="large" danger onClick={submitHandler}>
                             TRAŽI
                         </Button>

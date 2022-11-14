@@ -134,3 +134,11 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .listing-card {
+        .ant-card {
+            width: 100%;
+        }
+    }
+}

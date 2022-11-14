@@ -12,7 +12,7 @@ const ListingCard: React.FC<{ card: any }> = (props) => {
         title: props.card.title,
         image: props.card.imageIds[0],
         date: date.toLocaleDateString('de-DE'),
-        dateBuilt: dateBuilt.toLocaleDateString('de-DE'),
+        dateBuilt: dateBuilt.toLocaleDateString('de-DE') + ' · ',
         area: props.card.summary.area ? props.card.summary.area + 'm² · ' : '',
         rooms: props.card.summary.numberOfRooms ? 'Broj soba: ' + props.card.summary.numberOfRooms : '',
         priceEUR: props.card.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."),
@@ -22,7 +22,7 @@ const ListingCard: React.FC<{ card: any }> = (props) => {
     return   <Card
         className='listing-card'
         hoverable
-        style={{ width: 286 }}
+        style={ window.innerWidth >= 768 ? { width: 286 } : {}}
         cover={cardObject.image ? <img alt="Cover" src={cardObject.image} /> : <div className='listing-card__fallback'></div>}
     >
         <Meta title={cardObject.title} description={cardObject.area + cardObject.dateBuilt + cardObject.rooms} />

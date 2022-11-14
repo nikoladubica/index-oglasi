@@ -99,3 +99,11 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .footer {
+        &__top, &__bottom {
+            width: 100%;
+        }
+    }
+}
